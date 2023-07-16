@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, lazy, Suspense} from 'react';
+import './App.css'; 
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ApiProvider, {PostApiProvider } from './components/ApiProvider';  
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+const SignUp=lazy(()=>import("./components/SignUp")) 
+const ResetPassword=lazy(()=>import("./components/ResetPassword")) 
+const Form =lazy(()=>import("./components/Form")) 
+const ForgetPassword=lazy(()=>import("./components/ForgetPassword")) 
+const PasswordSuccess=lazy(()=>import("./components/PasswordSuccess")) 
+const TableData=lazy(()=>import("./components/TableData"))
+function App() { 
+  return (  
+    <ApiProvider>  
+    <div>
+      <Router> 
+        <Suspense fallback={<div> Loading </div>}> 
+      <Routes>
+          <Route path="/signup" element={<SignUp/>} />
+          <Route path="/" element={ <PostApiProvider><Form/></PostApiProvider>}/>
+          <Route path="/forgotpassword" element={<ForgetPassword />} />
+          <Route path="/user/password/reset/:value" element={<ResetPassword />} />  
+          <Route path="/PasswordSuccess" element={<PasswordSuccess/>}/>
+          <Route path="/table" element={<TableData/>} />
+        </Routes>   
+        </Suspense>
+      </Router>
+    </div> 
+    </ApiProvider> 
+    
+
   );
 }
 
