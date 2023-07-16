@@ -5,6 +5,7 @@ import { Table, Box, Button, Flex } from "@mantine/core";
 import { ApiContext } from "./ApiProvider";
 import { apiLogout } from "./services/Api";
 
+
 const TableData = (props: any) => {
   const navigate = useNavigate();
   const [responseTableData, setResponseTableData] = useState<any[]>([]);
