@@ -39,7 +39,14 @@ const Form = () => {
           value
         )
           ? null
-          : "Invalid email",
+          : "Invalid email", 
+          password: (value) =>
+          /^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$/.test(
+            value
+          )
+            ? null
+            : "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 8 characters long."
+
     },
   });
   const handleFormSubmit = (values: FormValues) => {

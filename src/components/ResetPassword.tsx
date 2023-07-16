@@ -71,7 +71,6 @@ const ResetPassword = () => {
             direction='column'
             gap={24}>
             <Title order={2}>Reset Password</Title>
-            {value}
             <TextInput
               placeholder='Enter the password'
               label='New password'
